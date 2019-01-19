@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "rebuild": "make rebuild",
+    "dev": "parcel ./public/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "cfx.simple-build-tool": "^0.0.13",
+    "parcel-bundler": "^1.11.0"
+  },
+  "dependencies": {
+    "cfx.require-plugin-coffee": "~0.2.21",
+    "ddeyes": "~0.2.15",
+    "pixi.js": "~5.0.0-alpha.3"
+  }
+}
