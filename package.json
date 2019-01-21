@@ -10,6 +10,7 @@
     "parcel-bundler": "^1.11.0"
   },
   "dependencies": {
+    "@pixi/utils": "~5.0.0-alpha.3",
     "cfx.require-plugin-coffee": "~0.2.21",
     "ddeyes": "~0.2.15",
     "pixi.js": "~5.0.0-alpha.3"

@@ -18,7 +18,9 @@ export default
     # 'reset-css'
     'cfx.require-plugin-coffee'
     'ddeyes'
+
     'pixi.js'
+    '@pixi/utils'
 
     # 'del'
     # 'gulp'
