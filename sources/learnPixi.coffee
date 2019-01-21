@@ -6,11 +6,14 @@ import * as PIXI from 'pixi.js'
   Application
   Sprite
   Texture
+  Rectangle
 } = PIXI
 
 export render = =>
 
   app = new Application(
+    # window.innerWidth
+    # window.innerHeight
     # width: 256
     # height: 256
     antialias: true
@@ -26,20 +29,31 @@ export render = =>
     window.innerWidth
     window.innerHeight
   )
+  spriterImgUrl = 'https://raw.githubusercontent.com/Zainking/LearningPixi/master/examples/images/screenshots/09.png'
 
-  catImg = 'https://raw.githubusercontent.com/Zainking/LearningPixi/master/examples/images/cat.png'
+  app.loader
+  .add spriterImgUrl
+  .load =>
 
-  cat = new Sprite Texture.from catImg
+    # plane = new Sprite Texture.from spriterImgUrl
 
-  # cat = Sprite.from catImg
-  cat.anchor.set 0.5
-  cat.x = window.innerWidth / 2
-  cat.y = window.innerHeight / 4
+    plane = new Sprite(
+      ( -> 
+        @frame = new Rectangle 96, 64, 32, 32
+        @
+      )
+      # .call Texture.from spriterImgUrl
+      .call app.loader.resources[spriterImgUrl].texture
+    )
 
-  app.ticker.add (delta) =>
-    cat.rotation += 0.1 * delta
+    plane.anchor.set 0.5
+    plane.x = window.innerWidth / 2
+    plane.y = window.innerHeight / 4
 
-  # Add the cat to the stage
-  app.stage.addChild cat
+    # app.ticker.add (delta) =>
+    #   cat.rotation += 0.1 * delta
+
+    # Add the cat to the stage
+    app.stage.addChild plane
 
   app.view
