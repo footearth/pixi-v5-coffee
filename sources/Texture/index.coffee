@@ -21,19 +21,46 @@ getPlane = (texture) =>
     .call texture
   )
 
-getButton = (texture) =>
-  new Sprite(
-    ( ->
-      @frame = new Rectangle(
-        32 * 4
-        32 * 5
-        32
-        32
+getButton =
+  fst: (texture) =>
+    new Sprite(
+      ( ->
+        @frame = new Rectangle(
+          32 * 4
+          32 * 5
+          8
+          32
+        )
+        @
       )
-      @
+      .call texture
     )
-    .call texture
-  )
+  mid: (texture) =>
+    new Sprite(
+      ( ->
+        @frame = new Rectangle(
+          32 * 4 + 8 
+          32 * 5
+          16
+          32
+        )
+        @
+      )
+      .call texture
+    )
+  lst: (texture) =>
+    new Sprite(
+      ( ->
+        @frame = new Rectangle(
+          32 * 4 + 8 + 16
+          32 * 5
+          8
+          32
+        )
+        @
+      )
+      .call texture
+    )
 
 export {
   spriterImgUrl

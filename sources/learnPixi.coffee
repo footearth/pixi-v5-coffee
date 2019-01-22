@@ -39,14 +39,15 @@ export render = =>
   .load =>
 
     c = {}
-    c.Button = Button()
+    c.Button = Button 8
 
-    # Button.anchor.set 0.5
+    # c.Button.anchor.set 0.5
+
     c.Button.x = window.innerWidth / 2
     c.Button.y = window.innerHeight / 4
 
     # app.ticker.add (delta) =>
-    #   cat.rotation += 0.1 * delta
+    #   c.Button.rotation += 0.1 * delta
 
     # Add the cat to the stage
     app.stage.addChild c.Button
