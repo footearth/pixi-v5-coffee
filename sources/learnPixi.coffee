@@ -4,10 +4,17 @@ do skipHello
 import * as PIXI from 'pixi.js'
 {
   Application
-  Sprite
+  Container
   Texture
-  Rectangle
+  BaseTexture
+  # TextureCache
 } = PIXI
+
+import {
+  spriterImgUrl
+  getPlane
+  getButton
+} from './Texture'
 
 export render = =>
 
@@ -29,31 +36,31 @@ export render = =>
     window.innerWidth
     window.innerHeight
   )
-  spriterImgUrl = 'https://raw.githubusercontent.com/Zainking/LearningPixi/master/examples/images/screenshots/09.png'
 
   app.loader
   .add spriterImgUrl
   .load =>
 
-    # plane = new Sprite Texture.from spriterImgUrl
+    bTexture = new BaseTexture spriterImgUrl
 
-    plane = new Sprite(
-      ( -> 
-        @frame = new Rectangle 96, 64, 32, 32
-        @
-      )
-      # .call Texture.from spriterImgUrl
-      .call app.loader.resources[spriterImgUrl].texture
-    )
+    animals = new Container()
 
-    plane.anchor.set 0.5
-    plane.x = window.innerWidth / 2
-    plane.y = window.innerHeight / 4
+    plane = getPlane new Texture bTexture
+    plane.position.set 0, 0
+    btn = getButton new Texture bTexture
+    btn.position.set 32, 0
+
+    animals.addChild plane
+    animals.addChild btn
+
+    # animals.anchor.set 0.5
+    animals.x = window.innerWidth / 2
+    animals.y = window.innerHeight / 4
 
     # app.ticker.add (delta) =>
     #   cat.rotation += 0.1 * delta
 
     # Add the cat to the stage
-    app.stage.addChild plane
+    app.stage.addChild animals
 
   app.view
