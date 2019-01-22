@@ -2,18 +2,15 @@ import { skipHello } from '@pixi/utils'
 do skipHello
 
 import * as PIXI from 'pixi.js'
-{
-  Application
-  Container
-  Texture
-  BaseTexture
-  # TextureCache
-} = PIXI
+# TextureCache
+{ Application } = PIXI
+
+import {
+  Button
+} from './Component'
 
 import {
   spriterImgUrl
-  getPlane
-  getButton
 } from './Texture'
 
 export render = =>
@@ -41,26 +38,17 @@ export render = =>
   .add spriterImgUrl
   .load =>
 
-    bTexture = new BaseTexture spriterImgUrl
+    c = {}
+    c.Button = Button()
 
-    animals = new Container()
-
-    plane = getPlane new Texture bTexture
-    plane.position.set 0, 0
-    btn = getButton new Texture bTexture
-    btn.position.set 32, 0
-
-    animals.addChild plane
-    animals.addChild btn
-
-    # animals.anchor.set 0.5
-    animals.x = window.innerWidth / 2
-    animals.y = window.innerHeight / 4
+    # Button.anchor.set 0.5
+    c.Button.x = window.innerWidth / 2
+    c.Button.y = window.innerHeight / 4
 
     # app.ticker.add (delta) =>
     #   cat.rotation += 0.1 * delta
 
     # Add the cat to the stage
-    app.stage.addChild animals
+    app.stage.addChild c.Button
 
   app.view

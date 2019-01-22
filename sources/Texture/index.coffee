@@ -2,13 +2,10 @@ import * as PIXI from 'pixi.js'
 
 {
   Sprite
-  # Texture
   Rectangle
 } = PIXI
 
 spriterImgUrl = 'https://raw.githubusercontent.com/Zainking/LearningPixi/master/examples/images/screenshots/09.png'
-
-# plane = new Sprite Texture.from spriterImgUrl
 
 getPlane = (texture) =>
   new Sprite(
