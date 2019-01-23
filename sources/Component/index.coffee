@@ -1,7 +1,6 @@
 import * as PIXI from 'pixi.js'
 
 {
-  Container
   Texture
   BaseTexture
 } = PIXI
@@ -12,10 +11,13 @@ import {
   getButton
 } from '../Texture'
 
-Button = (n = 1) =>
-  bTexture = new BaseTexture spriterImgUrl
+import {
+  createComponent
+} from '../lib/component'
 
-  result = new Container()
+Button = (n = 1) =>
+
+  bTexture = new BaseTexture spriterImgUrl
 
   btnFst = getButton.fst new Texture bTexture
   btnFst.position.set 0, 0
@@ -43,13 +45,19 @@ Button = (n = 1) =>
     0
   )
 
-  result.addChild btnFst
-  [1..n].forEach (c) =>
-    result.addChild btnMid[(c - 1)]
-  # result.addChild btnMid
-  result.addChild btnLst
-
-  result
+  createComponent.apply null, [
+    {}
+    btnFst
+    (
+      [1..n].reduce (r, c) =>
+        [
+          r...
+          btnMid[(c - 1)]
+        ]
+      , []
+    )...
+    btnLst
+  ]
 
 export {
   Button
