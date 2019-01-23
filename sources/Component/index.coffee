@@ -59,6 +59,37 @@ Button = (n = 1) =>
     btnLst
   ]
 
+  # c = cfxify {
+  #   btnFst
+  #   btnMid
+  #   btnLst
+  # }
+
+  # [
+  #   c.btnFst
+  #     position: [
+  #       0
+  #       0
+  #     ]
+  #   (
+  #     [1..n].reduce (r, c, i) =>
+  #       [
+  #         r...
+  #         c.btnMid[(c - 1)]
+  #           position: (
+  #             16 * i + 8
+  #             0
+  #           )
+  #       ]
+  #     , []
+  #   )...
+  #   c.btnLst
+  #     position: [
+  #       16 * n + 8
+  #       0 
+  #     ]
+  # ]
+
 export {
   Button
 }

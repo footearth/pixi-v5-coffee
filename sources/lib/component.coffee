@@ -1,5 +1,11 @@
 import * as PIXI from 'pixi.js'
-{ Container } = PIXI
+
+{
+  Container
+  Rectangle
+  Texture
+  Sprite
+} = PIXI
 
 Component = do =>
 
@@ -8,11 +14,41 @@ Component = do =>
     @attrs = attrs
     @children = children
 
-    @comp = new Container()
+    if ( children.length is 1 ) and (
+      children[0] instanceof Texture
+    )
 
-    if children.length isnt 0
+      texture = children[0]
+
+      @comp = new Sprite (
+
+        ( ->
+          @frame = new (
+            Function::bind.apply Rectangle
+            , [
+              null
+              attrs.rectangle...
+            ]
+          )
+          @
+        )
+        .call texture
+      )
+
+    else if ( children.length isnt 0 ) and (
+      children.every (e) =>
+        e instanceof Sprite
+    )
+
+      @comp = new Container()
+
       children.forEach (c, e) =>
         @comp.addChild c
+
+    else return {
+      attrs
+      children
+    }
 
     @comp.getComp = -> @
 
@@ -20,12 +56,13 @@ Component = do =>
 
   Comp
 
-createComponent = (style = {}, children...) ->
+createComponent = (attrs = {}, children..., e) ->
   new (
     Function::bind.apply Component, [
       null
-      style
+      attrs
       children...
+      e
     ]
   )
 

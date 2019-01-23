@@ -1,66 +1,50 @@
-import * as PIXI from 'pixi.js'
-
-{
-  Sprite
-  Rectangle
-} = PIXI
+import {
+  cfxify
+} from '../lib/cfx'
 
 spriterImgUrl = 'https://raw.githubusercontent.com/Zainking/LearningPixi/master/examples/images/screenshots/09.png'
 
 getPlane = (texture) =>
-  new Sprite(
-    ( ->
-      @frame = new Rectangle(
-        32 * 3
-        32 * 2
-        32
-        32
-      )
-      @
-    )
-    .call texture
-  )
+  comp = cfxify texture
+  comp
+    rectangle: [
+      32 * 3
+      32 * 2
+      32
+      32
+    ]
 
 getButton =
+
   fst: (texture) =>
-    new Sprite(
-      ( ->
-        @frame = new Rectangle(
-          32 * 4
-          32 * 5
-          8
-          32
-        )
-        @
-      )
-      .call texture
-    )
+    comp = cfxify texture
+    comp
+      rectangle: [
+        32 * 4
+        32 * 5
+        8
+        32
+      ]
+
   mid: (texture) =>
-    new Sprite(
-      ( ->
-        @frame = new Rectangle(
-          32 * 4 + 8 
-          32 * 5
-          16
-          32
-        )
-        @
-      )
-      .call texture
-    )
+    comp = cfxify texture
+    comp 
+      rectangle: [
+        32 * 4 + 8 
+        32 * 5
+        16
+        32
+      ]
+
   lst: (texture) =>
-    new Sprite(
-      ( ->
-        @frame = new Rectangle(
-          32 * 4 + 8 + 16
-          32 * 5
-          8
-          32
-        )
-        @
-      )
-      .call texture
-    )
+    comp = cfxify texture
+    comp
+      rectangle: [
+        32 * 4 + 8 + 16
+        32 * 5
+        8
+        32
+      ]
 
 export {
   spriterImgUrl
