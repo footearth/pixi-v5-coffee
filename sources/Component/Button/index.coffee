@@ -18,9 +18,11 @@ Btn = [
 , {}
 
 export default ({
-  baseTexture
+  baseTextureUrl
   midCount = 1
 }) =>
+
+  baseTexture = new BaseTexture baseTextureUrl
 
   [
     Btn.fst {

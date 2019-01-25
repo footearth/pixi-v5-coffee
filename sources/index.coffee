@@ -1,5 +1,4 @@
-# import { render } from './pixi'
-import { render } from './learnPixi'
+import { render } from './pixi'
 
 # console.log ProjectEcho
 view = render()
