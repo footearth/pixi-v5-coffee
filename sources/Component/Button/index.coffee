@@ -4,7 +4,6 @@ import * as PIXI from 'pixi.js'
 import { cfxify } from '../../lib/cfx'
 import { createComponent } from '../../lib/component'
 
-import { spriterImgUrl } from '../../Texture'
 import btn from './button'
 
 Btn = [
@@ -19,32 +18,34 @@ Btn = [
 , {}
 
 export default ({
+  baseTexture
   midCount = 1
 }) =>
 
-  bTexture = new BaseTexture spriterImgUrl
-
   [
-    Btn.fst
-      baseTexture: bTexture
+    Btn.fst {
+      baseTexture
       position: [ 0, 0 ]
+    }
     (
       [1..midCount].reduce (r, c, i) =>
         [
           r...
-          Btn.mid
-            baseTexture: bTexture
+          Btn.mid {
+            baseTexture
             position: [
               16 * i + 8
               0
             ]
+          }
         ]
       , []
     )...
-    Btn.lst
-      baseTexture: bTexture
+    Btn.lst {
+      baseTexture
       position: [
         16 * midCount + 8
         0
       ]
+    }
   ]

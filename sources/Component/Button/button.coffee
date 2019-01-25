@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js'
 { Texture } = PIXI
 import { cfxify } from '../../lib/cfx'
-import { getButton } from '../../Texture'
+import Button from './texture'
 
 Btn = [
   'fst'
@@ -10,7 +10,7 @@ Btn = [
 ].reduce (r, c) =>
   {
     r...
-    [c]: cfxify getButton[c]
+    [c]: cfxify Button[c]
   }
 , {}
 

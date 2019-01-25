@@ -2,12 +2,17 @@ import { skipHello } from '@pixi/utils'
 do skipHello
 
 import * as PIXI from 'pixi.js'
-{ Application } = PIXI
+{
+  Application
+  BaseTexture
+} = PIXI
 
 import { cfxify } from './lib/cfx'
 
-import { Button } from './Component'
-import { spriterImgUrl } from './Texture'
+import {
+  spriterImgUrl
+  Button
+} from './Component'
 
 c =
   Button: cfxify Button
@@ -37,9 +42,13 @@ export render = =>
   .add spriterImgUrl
   .load =>
 
+    baseTexture = new BaseTexture spriterImgUrl
+
     # c.Button.anchor.set 0.5
-    btn = c.Button
+    btn = c.Button {
+      baseTexture
       midCount: 8
+    }
 
     btn.x = window.innerWidth / 2
     btn.y = window.innerHeight / 4
