@@ -2,16 +2,15 @@ import { skipHello } from '@pixi/utils'
 do skipHello
 
 import * as PIXI from 'pixi.js'
-# TextureCache
 { Application } = PIXI
 
-import {
-  Button
-} from './Component'
+import { cfxify } from './lib/cfx'
 
-import {
-  spriterImgUrl
-} from './Texture'
+import { Button } from './Component'
+import { spriterImgUrl } from './Texture'
+
+c =
+  Button: cfxify Button
 
 export render = =>
 
@@ -38,18 +37,17 @@ export render = =>
   .add spriterImgUrl
   .load =>
 
-    c = {}
-    c.Button = Button 8
-
     # c.Button.anchor.set 0.5
+    btn = c.Button
+      midCount: 8
 
-    c.Button.x = window.innerWidth / 2
-    c.Button.y = window.innerHeight / 4
+    btn.x = window.innerWidth / 2
+    btn.y = window.innerHeight / 4
 
     # app.ticker.add (delta) =>
     #   c.Button.rotation += 0.1 * delta
 
     # Add the cat to the stage
-    app.stage.addChild c.Button
+    app.stage.addChild btn
 
   app.view

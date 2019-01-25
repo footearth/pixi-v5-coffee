@@ -44,10 +44,36 @@ Component = do =>
       
       else if ( typeof element ) is 'function'
 
-        @comp = element.apply null, [
+        maybeComp = element.apply null, [
           attrs
           children...
         ]
+
+        if maybeComp instanceof Sprite
+          @comp = maybeComp
+
+        else if ( Array.isArray maybeComp ) and (
+          maybeComp.every (e) =>
+            e instanceof Sprite
+        )
+          @comp = new Container()
+
+          maybeComp.forEach (c) =>
+            @comp.addChild c
+        
+        else
+
+          err = {
+            attrs
+            children
+            element
+          }
+
+          console.error(
+            'error: maybe not component when exec element creator'
+            err
+          )
+          return  err
 
       else
 
@@ -63,16 +89,6 @@ Component = do =>
         )
         return  err
     
-    else if ( children.length isnt 0 ) and (
-      children.every (e) =>
-        e instanceof Sprite
-    )
-
-      @comp = new Container()
-
-      children.forEach (c, e) =>
-        @comp.addChild c
-
     else
 
       err = {
