@@ -12,6 +12,11 @@ import {
 } from '../Texture'
 
 import {
+  cfxify
+} from '../lib/cfx'
+
+import {
+  extendComponent
   createComponent
 } from '../lib/component'
 
@@ -19,76 +24,51 @@ Button = (n = 1) =>
 
   bTexture = new BaseTexture spriterImgUrl
 
-  btnFst = getButton.fst new Texture bTexture
-  btnFst.position.set 0, 0
-
-  btnMid = [1..n].reduce (r, c, i) =>
-    [
-      r...
-      ( ->
-        @position.set(
-          16 * i + 8
-          0
+  Btn = [
+    'fst'
+    'mid'
+    'lst'
+  ].reduce (r, c) =>
+    {
+      r...  
+      [c]: cfxify ({
+        baseTexture
+        position
+      }) =>
+        rs = ( cfxify getButton[c]
+        ) texture: new Texture bTexture
+        if ( Array.isArray position ) and (
+          position.length is 2
         )
-        @
-      ).call getButton.mid new Texture bTexture
-    ]
-  , []
-
-  # btnMid = getButton.mid new Texture bTexture
-  # btnMid.position.set 8, 0
-
-  btnLst = getButton.lst new Texture bTexture
-  btnLst.position.set(
-    16 * n + 8
-    # 16 + 8
-    0
-  )
+          rs.position.set position[0], position[1]
+        rs
+    }
+  , {}
 
   createComponent.apply null, [
     {}
-    btnFst
+    Btn.fst
+      baseTexture: bTexture
+      position: [ 0, 0 ]
     (
-      [1..n].reduce (r, c) =>
+      [1..n].reduce (r, c, i) =>
         [
           r...
-          btnMid[(c - 1)]
+          Btn.mid
+            position: [
+              16 * i + 8
+              0
+            ]
         ]
       , []
     )...
-    btnLst
+    Btn.lst
+      position: [
+        16 * n + 8
+        0
+      ]
+    null
   ]
-
-  # c = cfxify {
-  #   btnFst
-  #   btnMid
-  #   btnLst
-  # }
-
-  # [
-  #   c.btnFst
-  #     position: [
-  #       0
-  #       0
-  #     ]
-  #   (
-  #     [1..n].reduce (r, c, i) =>
-  #       [
-  #         r...
-  #         c.btnMid[(c - 1)]
-  #           position: (
-  #             16 * i + 8
-  #             0
-  #           )
-  #       ]
-  #     , []
-  #   )...
-  #   c.btnLst
-  #     position: [
-  #       16 * n + 8
-  #       0 
-  #     ]
-  # ]
 
 export {
   Button

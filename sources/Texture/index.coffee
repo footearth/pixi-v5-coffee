@@ -2,12 +2,15 @@ import {
   cfxify
 } from '../lib/cfx'
 
+import {
+  extendComponent
+} from '../lib/component'
+
 spriterImgUrl = 'https://raw.githubusercontent.com/Zainking/LearningPixi/master/examples/images/screenshots/09.png'
 
 getPlane = (texture) =>
-  comp = cfxify texture
-  comp
-    rectangle: [
+  ( cfxify texture
+  ) rectangle: [
       32 * 3
       32 * 2
       32
@@ -16,30 +19,34 @@ getPlane = (texture) =>
 
 getButton =
 
-  fst: (texture) =>
-    comp = cfxify texture
-    comp
-      rectangle: [
-        32 * 4
-        32 * 5
-        8
-        32
-      ]
+  fst: ({
+    texture
+  }) =>
 
-  mid: (texture) =>
-    comp = cfxify texture
-    comp 
-      rectangle: [
+    ( cfxify texture
+    ) rectangle: [
+      32 * 4
+      32 * 5
+      8
+      32
+    ]
+
+  mid: ({
+    texture
+  }) =>
+    ( cfxify texture
+    ) rectangle: [
         32 * 4 + 8 
         32 * 5
         16
         32
       ]
 
-  lst: (texture) =>
-    comp = cfxify texture
-    comp
-      rectangle: [
+  lst: ({
+    texture
+  }) =>
+    ( cfxify texture
+    ) rectangle: [
         32 * 4 + 8 + 16
         32 * 5
         8
