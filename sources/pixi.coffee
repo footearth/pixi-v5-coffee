@@ -39,19 +39,23 @@ export render = =>
   .add baseTextureUrl
   .load =>
 
-    # c.Button.anchor.set 0.5
-    btn = c.Button {
-      baseTextureUrl
-      midCount: 8
-    }
+    c.Stage = cfxify app.stage
 
-    btn.x = window.innerWidth / 2
-    btn.y = window.innerHeight / 4
+    # c.Button.anchor.set 0.5
+
+    c.Stage {}
+    ,
+      c.Button {
+        baseTextureUrl
+        midCount: 8
+        x: window.innerWidth / 2
+        y: window.innerHeight / 4
+      }
 
     # app.ticker.add (delta) =>
     #   c.Button.rotation += 0.1 * delta
 
     # Add the cat to the stage
-    app.stage.addChild btn
+    # app.stage.addChild btn
 
   app.view

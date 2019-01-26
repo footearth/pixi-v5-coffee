@@ -3,6 +3,10 @@ import * as PIXI from 'pixi.js'
 
 import { cfxify } from '../../lib/cfx'
 import { createComponent } from '../../lib/component'
+import { Container } from '../../lib/defaultComps'
+
+c = 
+  Container: cfxify Container
 
 import btn from './button'
 
@@ -20,15 +24,20 @@ Btn = [
 export default ({
   baseTextureUrl
   midCount = 1
+  attrs...
 }) =>
 
   baseTexture = new BaseTexture baseTextureUrl
 
-  [
+  c.Container.apply null, [
+
+    attrs
+
     Btn.fst {
       baseTexture
       position: [ 0, 0 ]
     }
+
     (
       [1..midCount].reduce (r, c, i) =>
         [
@@ -43,6 +52,7 @@ export default ({
         ]
       , []
     )...
+
     Btn.lst {
       baseTexture
       position: [

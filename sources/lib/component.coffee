@@ -41,7 +41,27 @@ Component = do =>
           )
           .call element
         )
+
+      else if element instanceof Container
       
+        @comp = element
+
+        if ( Array.isArray children ) and (
+          children.length >= 0
+        )
+          children.forEach (e) =>
+            @comp.addChild e
+
+        if ( typeof attrs ) is 'object'
+
+          k_attrs = Object.keys attrs
+
+          if ( Array.isArray k_attrs ) and (
+            k_attrs.length >= 0
+          )
+            k_attrs.forEach (e) =>
+              @comp[e] = attrs[e]
+
       else if ( typeof element ) is 'function'
 
         maybeComp = element.apply null, [
@@ -49,7 +69,9 @@ Component = do =>
           children...
         ]
 
-        if maybeComp instanceof Sprite
+        if ( maybeComp instanceof Sprite ) or (
+          maybeComp instanceof Container
+        )
           @comp = maybeComp
 
         else if ( Array.isArray maybeComp ) and (
@@ -73,6 +95,7 @@ Component = do =>
             'error: maybe not component when exec element creator'
             err
           )
+
           return  err
 
       else
@@ -87,8 +110,9 @@ Component = do =>
           'error: no element handler when new Component'
           err
         )
+
         return  err
-    
+
     else
 
       err = {
