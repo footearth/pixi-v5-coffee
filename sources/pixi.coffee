@@ -11,7 +11,10 @@ import {
   Button
 } from './Component'
 
+import Sider from './Layout/Sider'
+
 c =
+  Sider: cfxify Sider
   Button: cfxify Button
 
 export render = =>
@@ -45,12 +48,15 @@ export render = =>
 
     c.Stage {}
     ,
-      c.Button {
-        baseTextureUrl
-        midCount: 8
-        x: window.innerWidth / 2
-        y: window.innerHeight / 4
-      }
+      c.Sider {}
+      # c.Button {
+      #   baseTextureUrl
+      #   midCount: 8
+      #   # x: window.innerWidth / 2
+      #   # y: window.innerHeight / 4
+      #   x: 0
+      #   y: 0
+      # }
 
     # app.ticker.add (delta) =>
     #   c.Button.rotation += 0.1 * delta

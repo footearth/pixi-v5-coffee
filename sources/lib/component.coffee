@@ -174,7 +174,12 @@ createComponent = (args...) =>
       element
     ] = args
 
-  if ( typeof element ) is 'function' and (
+  if ( Array.isArray children ) and (
+    children[0] instanceof Array
+  )
+    children = children[0]
+
+  if ( ( typeof element ) is 'function' ) and (
     element.isExteded isnt true
   )
     element = extendComponent element
