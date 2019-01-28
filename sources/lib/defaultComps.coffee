@@ -1,11 +1,5 @@
 import * as PIXI from 'pixi.js'
 
-{
-  Container
-  Graphics
-  Sprite
-} = PIXI
-
 _Default = [
   'Container'
   'Graphics'
@@ -21,17 +15,30 @@ _Default = [
 
       Comp = new PIXI[c]()
 
-      if children? and (
-        Array.isArray children
-      ) and (
-        children.length >= 1
-      )
-        children.forEach (e) =>
+      racChildren = (_Comp, _child) =>
 
-          if ( e instanceof Container ) or (
-            e instanceof Sprite
-          )
-            Comp.addChild e
+        if _child? and (
+          Array.isArray _child
+        ) and (
+          _child.length >= 1
+        )
+          _child.forEach (e) =>
+
+            if ( Array.isArray e ) and (
+              e.length >= 1
+            )
+              racChildren _Comp, e  
+
+            else
+
+              if ( e instanceof PIXI.Container ) or (
+                e instanceof PIXI.Sprite
+              ) or (
+                e instanceof PIXI.Graphics
+              )
+                _Comp.addChild e
+
+      racChildren Comp, children
 
       if c is 'Graphics'
 

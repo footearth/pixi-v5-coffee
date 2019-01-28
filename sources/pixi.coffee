@@ -27,7 +27,7 @@ export render = =>
     antialias: true
     transparent: false
     resolution: 1
-    backgroundColor: 0x007BA7
+    backgroundColor: 0xFFFFFF
   )
 
   app.renderer.view.style.position = 'absolute'
@@ -49,14 +49,15 @@ export render = =>
     c.Stage {}
     ,
       c.Sider {}
-      # c.Button {
-      #   baseTextureUrl
-      #   midCount: 8
-      #   # x: window.innerWidth / 2
-      #   # y: window.innerHeight / 4
-      #   x: 0
-      #   y: 0
-      # }
+      ,
+        c.Button {
+          baseTextureUrl
+          midCount: 8
+          # x: window.innerWidth / 2
+          # y: window.innerHeight / 4
+          x: 0
+          y: 0
+        }
 
     # app.ticker.add (delta) =>
     #   c.Button.rotation += 0.1 * delta

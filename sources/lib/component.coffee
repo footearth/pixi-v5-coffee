@@ -5,6 +5,7 @@ import * as PIXI from 'pixi.js'
   Rectangle
   Texture
   Sprite
+  Graphics
 } = PIXI
 
 Component = do =>
@@ -71,6 +72,8 @@ Component = do =>
 
         if ( maybeComp instanceof Sprite ) or (
           maybeComp instanceof Container
+        ) or (
+          maybeComp instanceof Graphics
         )
           @comp = maybeComp
 
